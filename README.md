@@ -3,11 +3,16 @@
 ## Description
 A short description of the project.
 
+##Prerequisites
+- Docker
+- Docker Compose
+- Note: The ollama-service Docker container requires the llama3.2 or deepseek models to be installed manually. Without these models, the service will not connect to Ollama.
+
 ### Features
 - **FastAPI**: A modern, fast (high-performance), web framework for building APIs with Python 3.6+.
 - **Uvicorn**: A lightning-fast ASGI server implementation, using `uvloop` and `httptools`.
 - **LangChain**: A framework for developing applications powered by language models.
-- **Ollama Llama3.1**: Integration with the Ollama Llama3.1 model for text generation.
+- **Ollama**: Integration with the Ollama model for text generation.
 - **Docker**: Containerized environment for consistent development and deployment.
 - **GitHub Actions**: CI/CD pipeline for automated testing and linting.
 - **Environment Configuration**: Separate environment configurations for development, UAT, and production.
@@ -22,7 +27,7 @@ A short description of the project.
 1. Clone the repository:
     ```bash
     git clone https://github.com/bigbansal/conversation-ai.git
-    cd project_name
+    cd conversation-ai
     ```
 
 ### Environment Configuration
