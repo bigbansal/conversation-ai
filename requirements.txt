@@ -1,0 +1,19 @@
+# Add your project dependencies here
+# Others
+pylint
+pytest
+pytest-mock
+python-dotenv
+fastapi
+uvicorn
+
+# Langchain
+langchain
+ollama
+langchain_community
+langchain-ollama
+
+# Google
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib

@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ollama-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.ollama
+    environment:
+      - ENV=dev
+    volumes:
+      - .:/app
+    ports:
+      - "11000:11000"
+    command: ["sh", "-c", "OLLAMA_HOST=0.0.0.0:11000 ollama serve"]
+
+  python-service:
+    depends_on:
+      - ollama-service
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    environment:
+      - ENV=dev
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: ["sh", "-c", "python src/main.py"]
+

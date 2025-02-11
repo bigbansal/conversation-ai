@@ -1,0 +1,43 @@
+# Use the official Python image from the Docker Hub
+FROM python:3.12-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install necessary tools
+RUN apt-get update && apt-get install -y \
+    wget \
+    sudo \
+    unzip \
+    curl \
+    gzip \
+    gnupg2 \
+    lsb-release \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# Check if Ollama is already installed, if not, download and install it
+RUN if [ ! -f "/usr/local/bin/Ollama" ]; then \
+        echo "Ollama not found. Downloading and installing Ollama..."; \
+        curl -sSL https://ollama.com/install.sh | bash; \
+    else \
+        echo "Ollama already exists. Skipping download and installation."; \
+    fi
+
+
+
+#RUN ollama serve &
+#RUN sleep 5
+#RUN ollama pull deepseek-r1:1.5b
+#RUN ollama pull llama3.2
+#RUN ollama stop
+
+#RUN ollama serve & sleep 5 && ollama pull llama3.2
+
+
+# Make port 11000 available to the world outside this container
+EXPOSE 11000
+
+# Run Ollama serve
+CMD ["sh", "-c", "OLLAMA_HOST=0.0.0.0:11000 ollama serve"]

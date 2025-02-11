@@ -1,0 +1,29 @@
+# Use the official Python image from the Docker Hub
+FROM python:3.12-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . .
+RUN ls -lrt
+# Copy the requirements file into the container
+COPY requirements.txt .
+RUN ls -lrt
+# Install any dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+
+# Set the default environment variable
+#ARG ENV=dev
+#ENV ENV=${ENV}
+
+# Copy the .env file into the container
+#COPY env/.env.${ENV} .env
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the application
+CMD ["sh", "-c", "python src/main.py"]
